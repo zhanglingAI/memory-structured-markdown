@@ -1,0 +1,39 @@
+{
+  "name": "@openclaw/memory-structured-markdown",
+  "version": "2026.4.22",
+  "description": "OpenClaw structured markdown memory - each memory is a separate markdown file with YAML frontmatter, human readable and editable",
+  "type": "module",
+  "dependencies": {
+    "chokidar": "^4.0.3",
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "openclaw": ">=2026.4.20"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    }
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ],
+    "install": {
+      "npmSpec": "@openclaw/memory-structured-markdown",
+      "defaultChoice": "npm",
+      "minHostVersion": ">=2026.4.10"
+    },
+    "compat": {
+      "pluginApi": ">=2026.4.20"
+    },
+    "build": {
+      "openclawVersion": "2026.4.22"
+    },
+    "release": {
+      "publishToClawHub": true,
+      "publishToNpm": true
+    }
+  }
+}

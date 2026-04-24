@@ -1,0 +1,117 @@
+{
+  "id": "memory-structured-markdown",
+  "kind": "memory",
+  "uiHints": {
+    "rootDir": {
+      "label": "Memory Root Directory",
+      "placeholder": "~/.openclaw/memory/structured",
+      "help": "Root directory for storing structured memory files"
+    },
+    "enableEmbedding": {
+      "label": "Enable Semantic Search",
+      "help": "Enable vector embedding generation for semantic search"
+    },
+    "embedding.apiKey": {
+      "label": "Embedding API Key",
+      "sensitive": true,
+      "placeholder": "sk-proj-...",
+      "help": "API key for embedding provider (or use ${OPENAI_API_KEY})"
+    },
+    "embedding.model": {
+      "label": "Embedding Model",
+      "placeholder": "text-embedding-3-small",
+      "help": "Embedding model to use"
+    },
+    "embedding.baseUrl": {
+      "label": "Base URL",
+      "placeholder": "https://api.openai.com/v1",
+      "help": "Base URL for compatible providers (e.g. http://localhost:11434/v1)",
+      "advanced": true
+    },
+    "embedding.dimensions": {
+      "label": "Dimensions",
+      "placeholder": "1536",
+      "help": "Vector dimensions for custom models (required for non-standard models)",
+      "advanced": true
+    },
+    "autoCapture": {
+      "label": "Auto-Capture",
+      "help": "Automatically capture important information from conversations"
+    },
+    "autoRecall": {
+      "label": "Auto-Recall",
+      "help": "Automatically inject relevant memories into context"
+    },
+    "importanceDecayEnabled": {
+      "label": "Enable Importance Decay",
+      "help": "Automatically decay importance over time"
+    },
+    "importanceDecayRate": {
+      "label": "Decay Rate per Day",
+      "placeholder": "0.005",
+      "help": "Daily decay rate (0.005 = 0.5% per day)",
+      "advanced": true
+    },
+    "minImportance": {
+      "label": "Minimum Importance",
+      "placeholder": "0.1",
+      "help": "Memory below this importance gets archived",
+      "advanced": true
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "rootDir": {
+        "type": "string"
+      },
+      "enableEmbedding": {
+        "type": "boolean"
+      },
+      "embedding": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "apiKey": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "baseUrl": {
+            "type": "string"
+          },
+          "dimensions": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "apiKey"
+        ]
+      },
+      "autoCapture": {
+        "type": "boolean"
+      },
+      "autoRecall": {
+        "type": "boolean"
+      },
+      "importanceDecayEnabled": {
+        "type": "boolean"
+      },
+      "importanceDecayRate": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 0.1
+      },
+      "minImportance": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "required": [
+      "rootDir"
+    ]
+  }
+}
