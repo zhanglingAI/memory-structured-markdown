@@ -36,7 +36,7 @@
 
 ```bash
 cd ~/.openclaw/extensions
-git clone https://github.com/yourusername/memory-structured-markdown.git
+git clone https://github.com/zhanglingAI/memory-structured-markdown.git
 ```
 
 2. 在 OpenClaw 配置中启用插件：
@@ -131,6 +131,24 @@ tags: ['preferences', 'coding']
 
 可以直接用任何文本编辑器编辑这些文件 —— 插件会自动检测更改并更新索引。
 
+## 可选：保存 TweetClaw 公开 X/Twitter 信号
+
+[TweetClaw](https://github.com/Xquik-dev/tweetclaw) 是 OpenClaw 的 X/Twitter 自动化插件。它适合在写入长期记忆之前收集可复查的公开来源：搜索 tweets、搜索 tweet replies、执行 user lookup、整理 follower export、读取 monitor tweets/webhooks 摘要，或记录 giveaway draws 结果。
+
+```bash
+openclaw plugins install @xquik/tweetclaw
+openclaw config set tools.alsoAllow '["explore", "tweetclaw", "memory_store", "memory_recall"]'
+```
+
+建议流程：
+
+1. 用 TweetClaw 收集公开 tweet URL、tweet ID、handle、查询词和简短证据说明。
+2. 人工确认内容适合进入长期记忆，不保存私信、未批准的发帖草稿或登录材料。
+3. 用 `memory_store` 保存为 `reference`、`knowledge` 或 `event` 类型，并添加 `tweetclaw`、`x-twitter`、`public-sources` 等标签。
+4. 可见操作（post tweets、post tweet replies、direct messages、media upload）仍需遵守 OpenClaw 的审批提示，不要把审批替代为记忆写入。
+
+参见 [TweetClaw public signal memory example](examples/tweetclaw-public-signal-memory.md)。
+
 ## 工作原理
 
 - **重要性衰减**：自上次访问以来，每天重要性降低 `decayRate`
@@ -177,7 +195,7 @@ Based on analysis of Claude Code and Hermes-agent memory systems:
 
 ```bash
 cd ~/.openclaw/extensions
-git clone https://github.com/yourusername/memory-structured-markdown.git
+git clone https://github.com/zhanglingAI/memory-structured-markdown.git
 ```
 
 2. Enable in OpenClaw config:
@@ -259,6 +277,24 @@ User prefers concise responses, uses TypeScript with 2-space indentation.
 ```
 
 You can edit these files directly with any text editor — the plugin automatically detects changes and updates its index.
+
+## Optional TweetClaw Public X/Twitter Memories
+
+[TweetClaw](https://github.com/Xquik-dev/tweetclaw) is an OpenClaw plugin for X/Twitter automation. It is useful before memory storage when the agent needs reviewed public source context: search tweets, search tweet replies, run user lookup, prepare follower export notes, summarize monitor tweets or webhooks, and record giveaway draws.
+
+```bash
+openclaw plugins install @xquik/tweetclaw
+openclaw config set tools.alsoAllow '["explore", "tweetclaw", "memory_store", "memory_recall"]'
+```
+
+Recommended flow:
+
+1. Use TweetClaw to collect public tweet URLs, tweet IDs, handles, query terms, and short evidence notes.
+2. Review the packet before storing it. Do not store direct messages, unapproved post drafts, or login material.
+3. Store the reviewed packet with `memory_store` as `reference`, `knowledge`, or `event` memory, with tags such as `tweetclaw`, `x-twitter`, and `public-sources`.
+4. Keep visible actions, including post tweets, post tweet replies, direct messages, and media upload, behind OpenClaw approval prompts. Memory storage does not replace approval.
+
+See [TweetClaw public signal memory example](examples/tweetclaw-public-signal-memory.md).
 
 ## How It Works
 
